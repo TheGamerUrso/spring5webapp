@@ -1,4 +1,4 @@
-package thegamerurso.springframework.spring5webapp.domain;
+package guru.springframework.spring5webapp.domain;
 
 import java.util.Set;
 
@@ -9,7 +9,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-
 @Entity
 public class Book 
 {

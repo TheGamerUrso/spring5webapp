@@ -1,4 +1,4 @@
-package thegamerurso.springframework.spring5webapp.domain;
+package guru.springframework.spring5webapp.domain;
 
 import java.util.Set;
 
