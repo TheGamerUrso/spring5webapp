@@ -1,6 +1,6 @@
 package guru.springframework.spring5webapp.domain;
 
-import java.util.Set;
+import java.util.*;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,10 +22,18 @@ public class Author
     private Set<Book> books;
     
     
-    public Author() {}
+    public Author() 
+    {
+        this("Unknown Author","");
+    }
+
+    
+    public Author(String firstName, String lastName) {
+        this(firstName, lastName, new HashSet<>());
+    }
 
 
-    public Author(String firstName, String lastName, Set<Book> books) {
+    public Author(String firstName, String lastName, HashSet<Book> books) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.books = books;

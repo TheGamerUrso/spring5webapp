@@ -1,7 +1,6 @@
 package guru.springframework.spring5webapp.domain;
 
-import java.util.Set;
-
+import java.util.*;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 @Entity
 public class Book 
 {
@@ -18,12 +18,23 @@ public class Book
     private String title;
     private String isbn;
 
+    @ManyToOne
+    private Publisher publisher;
+
     @ManyToMany
     @JoinTable(name="author_book",joinColumns=@JoinColumn(name="book_id"),
     inverseJoinColumns=@JoinColumn(name="author_id"))
-    private Set<Author> authors;
+    private Set<Author> authors = new HashSet<Author>();
     
-    public Book() {}
+    public Book() 
+    {
+        this("Unknown Ttitle","Unknown");
+    }
+    
+    public Book(String title, String isbn) 
+    {
+        this(title,isbn,new HashSet<Author>());
+    }
 
     public Book(String title, String isbn, Set<Author> authors) {
         this.title = title;
@@ -55,6 +66,13 @@ public class Book
         this.authors = authors;
     }
 
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
     
     @Override
     public String toString() {
